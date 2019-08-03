@@ -14,7 +14,7 @@ class App extends React.Component {
   }
 
   componentDidMount = () => {
-    fetch('http://localhost:3000/data/newsData.json')
+    fetch('./data/newsData.json')
       .then((response)=>response.json())
       .then((data)=>{
         this.setState({
