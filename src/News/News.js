@@ -1,10 +1,9 @@
 import React from 'react';
-import './News.css';
+import './News.scss';
 import Article from "./Article";
 
 
 class News extends React.Component {
-
   renderNews = () => {
      const {data} = this.props;
 
@@ -19,13 +18,15 @@ class News extends React.Component {
     return newsTemplate;
   }
 
-
   render() {
     const {data} = this.props;
 
     return (
       <div className="news">
-        {this.renderNews()}
+        <h3>Новости</h3>
+        <div className="news__list">
+          {this.renderNews()}
+        </div>
         {
           data.length>0?<strong>Всего новостей: {data.length}</strong>:null
         }

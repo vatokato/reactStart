@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import News from "./News";
+import News from "./News/News";
 
 const myNews = [
   {
@@ -28,7 +28,6 @@ const myNews = [
 const App = () => {
   return (
     <React.Fragment>
-      <h3>Новости</h3>
       <News data={myNews} />
     </React.Fragment>
   )
