@@ -2,10 +2,10 @@ import React from 'react';
 import './News.scss';
 import Article from "./Article";
 
-
 class News extends React.Component {
+
   renderNews = () => {
-     const {data} = this.props;
+    const {data } = this.props;
 
     let newsTemplate = <p>К сожалению, новостей нет</p>;
     if(data.length>0) {
@@ -19,7 +19,7 @@ class News extends React.Component {
   }
 
   render() {
-    const {data} = this.props;
+    const {data } = this.props;
 
     return (
       <div className="news">
@@ -32,8 +32,6 @@ class News extends React.Component {
         }
       </div>
     )
-
   }
 }
-
-export default News;
+export {News};

@@ -1,0 +1,63 @@
+.news {
+  margin: 20px;
+}
+
+.add {
+  margin: 15px auto;
+  padding: 5px 10px;
+  border: 1px dashed #000;
+  max-width: 300px;
+
+
+  .add__author, .add__text, .add__bigText, .add__btn, .add__checkrule {
+    display: block;
+    margin: 5px 0;
+    width: 100%;
+  }
+
+  .add__author {
+    border: 1px solid #000;
+    padding: 5px;
+  }
+
+  .add__text {
+    border: 1px solid #000;
+    padding: 5px;
+    height: 40px;
+  }
+  .add__bigText {
+    border: 1px solid #000;
+    padding: 5px;
+    height: 100px;
+  }
+
+  .add__checkrule {
+    font-size: 11px;
+  }
+
+  .add__btn {
+    padding: 5px;
+    cursor: pointer;
+  }
+}
+
+
+
+.news__list {
+}
+
+.news__article {
+  background: #FFF;
+  margin: 0 0 20px;
+  box-shadow: 2px 2px 5px -1px rgba(0, 0, 0,.5);
+  padding: 15px 20px;
+}
+
+.news__author {
+  text-decoration: underline;
+  color: #007DDC;
+}
+.news__count {
+  margin: 10px 0 0 0;
+  display: block;
+}

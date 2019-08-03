@@ -1,36 +1,62 @@
 import React from 'react';
-import './App.css';
-import News from "./News/News";
+import {News} from "./components/News";
+import Add from "./components/Add";
 
-const myNews = [
-  {
-    id: 1, // добавили id
-    author: 'Саша Печкин',
-    text: 'В четверг, четвертого числа...'
-  },
-  {
-    id: 2,
-    author: 'Просто Вася',
-    text: 'Считаю, что $ должен стоить 35 рублей!'
-  },
-  {
-    id: 3,
-    author: 'Max Frontend',
-    text: 'Прошло 2 года с прошлых учебников, а $ так и не стоит 35'
-  },
-  {
-    id: 4,
-    author: 'Гость',
-    text: 'Бесплатно. Без смс, про реакт, заходи - https://maxpfrontend.ru'
+//import myNews from "../public/data/newsData";
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      news: null,
+      isLoading: true
+    }
   }
-];
 
-const App = () => {
-  return (
-    <React.Fragment>
-      <News data={myNews} />
-    </React.Fragment>
-  )
+  componentDidMount = () => {
+    fetch('http://localhost:3000/data/newsData.json')
+      .then((response)=>response.json())
+      .then((data)=>{
+        this.setState({
+          news: data,
+          filteredNews:null,
+          isLoading:false
+        });
+      })
+      .catch(function(error) {
+        console.log(error.message);
+      });
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    if(!Array.isArray(state.news)) return null;
+    let nextFilteredNews = [...state.news];
+    nextFilteredNews.forEach((item, index) => {
+      if (item.bigText.toLowerCase().indexOf('pubg') !== -1) {
+        item.bigText = 'СПАМ';
+      }
+    });
+    return {
+      filteredNews: nextFilteredNews,
+    }
+  }
+
+  handleAddNews = (data) => {
+    const newNews = [data, ...this.state.news];
+    this.setState({news: newNews});
+  }
+
+  render() {
+    const {news, filteredNews, isLoading} = this.state;
+    return (
+      <React.Fragment>
+        <Add onAddNews={this.handleAddNews}/>
+        {isLoading && <p>Загружаю...</p>}
+        {Array.isArray(news) && <News data={filteredNews} />}
+      </React.Fragment>
+    )
+  }
+
 }
 
 export default App;
